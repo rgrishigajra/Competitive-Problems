@@ -5,9 +5,7 @@ def longest_substring_with_k_distinct(str, k):
     dic = {}
     result_len = 0
     start_ptr = 0
-    print(str, k)
     for char in range(len(str)):
-        print(dic, result_len)
         if str[char] not in dic:
             if len(dic) < k:
                 dic[str[char]] = 1
