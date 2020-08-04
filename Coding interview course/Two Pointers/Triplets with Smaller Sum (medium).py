@@ -6,7 +6,6 @@ def triplet_with_smaller_sum(arr, target):
         left, right = first + 1, len(arr) - 1
         while (left < right):
             if arr[left] + arr[right]+arr[first] < target:
-                git
                 count += right - left
                 left += 1
             else:
@@ -17,6 +16,5 @@ def triplet_with_smaller_sum(arr, target):
 def main():
     print(triplet_with_smaller_sum([-1, 0, 2, 3], 3))
     print(triplet_with_smaller_sum([-1, 4, 2, 1, 3], 5))
-
 
 main()
