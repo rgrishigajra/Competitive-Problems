@@ -14,7 +14,8 @@ def find_missing_number(nums):
         if nums[i] == 0:
             return i+1
 
-
+def find_missing_number1(nums):
+        return int((len(nums))*(len(nums)+1)/2-sum(nums))
 def main():
     print(find_missing_number([4, 3, 1, 0]))
     print(find_missing_number([8, 3, 5, 2, 4, 6, 1, 0]))
