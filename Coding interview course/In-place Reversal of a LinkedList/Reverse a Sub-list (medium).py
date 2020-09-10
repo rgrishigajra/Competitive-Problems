@@ -2,38 +2,40 @@ from __future__ import print_function
 
 
 class Node:
-    def __init__(self, value, next=None):
-        self.value = value
+    def __init__(self, val, next=None):
+        self.val = val
         self.next = next
 
     def print_list(self):
         temp = self
         while temp is not None:
-            print(temp.value, end=" ")
+            print(temp.val, end=" ")
             temp = temp.next
         print()
 
 
-def reverse_sub_list(head, p, q):
+def reverseBetween(head, m: int, n: int):
     before_sublist = None
     after_sublist = None
-    curr = head
-    for i in range(p-2):
-        print(curr.value)
+    curr,prev = head,None
+    if not head:
+        return None
+    for i in range(m-1):
+        prev = curr
         curr = curr.next
-    before_sublist = curr
-    print(curr.value)
-    prev = curr
-    curr = curr.next
-    next = curr.next
-    for i in range(q-p+1):
-        print(curr.value)
+    before_sublist = prev
+    firstnode_sublist=curr
+    for i in range(n-m+1):
         next = curr.next
         curr.next = prev
         prev = curr
         curr = next
-    before_sublist.next.next = next
-    before_sublist.next = prev
+    if before_sublist:
+        before_sublist.next = prev
+    else:
+        head = prev
+    if firstnode_sublist:
+        firstnode_sublist.next = curr
     return head
 
 
@@ -50,7 +52,7 @@ def main():
 
     print("Nodes of original LinkedList are: ", end='')
     head.print_list()
-    result = reverse_sub_list(head, 2, 5)
+    result = reverseBetween(head, 2, 5)
     print("Nodes of reversed LinkedList are: ", end='')
     result.print_list()
 
