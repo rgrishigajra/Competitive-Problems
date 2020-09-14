@@ -6,7 +6,7 @@ def test(threshold):
     usernames = []
     itr=1
     resp = requests.get(
-        "https://jsonmock.hackerrank.com/api/article_users?page="+str(itr))
+        "url"+str(itr))
     author_info = resp.json()
     # print(json.dumps(author_info, indent=2))
     for author in author_info['data']:
@@ -17,7 +17,7 @@ def test(threshold):
     while itr<author_info['total_pages']:
         itr+=1
         resp = requests.get(
-        "https://jsonmock.hackerrank.com/api/article_users?page="+str(itr))
+        "url"+str(itr))
         author_info = resp.json()
         # articles = resp2.json()
         print(json.dumps(author_info, indent=2))
