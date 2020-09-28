@@ -5,7 +5,7 @@ def search_next_letter(letters, key):
         return letters[0]
     while l <= h:
         mid = (h+l)//2
-        # mid points to element itself but we need next so we can elliminate this step!
+        # mid points to element itself but we need next so we can elliminate this step! l always breaks 
         # if key == letters[mid]: 
         #     return letters[(mid+1) % (len(letters))]
         if key <= letters[mid]:
