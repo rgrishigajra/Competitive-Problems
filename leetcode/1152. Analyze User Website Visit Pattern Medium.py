@@ -22,6 +22,11 @@ class Solution:
             users[record.name].append(record.site)
         for user, sites in users.items():
             combos = set(itertools.combinations(sites, r=3))
+        # without itertools
+        # for i in range(len(sites)):
+        #     for j in range(i+1,len(sites)):
+        #         for k in range(j+1,len(sites)):
+        #             combos.add((sites[i],sites[j],sites[k],))
             for combo in combos:
                 seq3[combo] += 1
         max_visit = 0
