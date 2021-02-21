@@ -23,3 +23,19 @@ class Solution:
                 if node.right != None:
                     stack.append((node.right, path))
         return res
+
+
+class Solution:
+    def helper(self, node, allPath, curPath):
+        if not node:
+            return
+        if not node.left and not node.right:
+            allPath.append(curPath+str(node.val))
+        else:
+            self.helper(node.left, allPath, curPath+str(node.val)+'->')
+            self.helper(node.right, allPath, curPath+str(node.val)+'->')
+
+    def binaryTreePaths(self, root: TreeNode) -> List[str]:
+        allPath = []
+        self.helper(root, allPath, '')
+        return allPath
