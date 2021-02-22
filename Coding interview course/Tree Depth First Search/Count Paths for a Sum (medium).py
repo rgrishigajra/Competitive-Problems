@@ -5,25 +5,36 @@ class TreeNode:
         self.right = right
 
 
-def r(node, path, s):
-    if not node:
-        return 0
-    cur_path = [*path, node.val]
-    cur_sum = 0
-    start = 0
-    sumi = 0
-    for end, val in enumerate(cur_path):
-        cur_sum += val
-        while cur_sum > s:
-            cur_sum -= cur_path[start]
-            start += 1
-        if cur_sum == s:
-            sumi += 1
-    return r(node.left, cur_path, s) + r(node.right, cur_path, s) + sumi
+class Solution:
+    def count_paths(self, root, S):
+        return self.count_paths_recursive(root, S, [])
 
+    def count_paths_recursive(self, currentNode, S, currentPath):
+        if currentNode is None:
+            return 0
 
-def count_paths(root, S):
-    return r(root, [], S)
+        # add the current node to the path
+        currentPath.append(currentNode.val)
+        pathCount, pathSum = 0, 0
+        # find the sums of all sub-paths in the current path list
+        for i in range(len(currentPath)-1, -1, -1):
+            pathSum += currentPath[i]
+            # if the sum of any sub-path is equal to 'S' we increment our path count.
+            if pathSum == S:
+                pathCount += 1
+
+        # traverse the left sub-tree
+        pathCount += self.count_paths_recursive(
+            currentNode.left, S, currentPath)
+        # traverse the right sub-tree
+        pathCount += self.count_paths_recursive(
+            currentNode.right, S, currentPath)
+
+        # remove the current node from the path to backtrack
+        # we need to remove the current node while we are going up the recursive call stack
+        del currentPath[-1]
+
+        return pathCount
 
 
 def main():
