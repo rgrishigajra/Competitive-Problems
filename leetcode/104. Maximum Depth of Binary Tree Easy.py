@@ -21,3 +21,8 @@ class Solution:
             if node.right:
                 q.append((node.right, depth+1))
         return max_d
+
+    def maxDepth(self, root: TreeNode) -> int:
+        if not root:
+            return 0
+        return max(self.maxDepth(root.left), self.maxDepth(root.right)) + 1
